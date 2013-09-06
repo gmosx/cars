@@ -38,8 +38,6 @@ ViewApp.prototype._connect = function () {
 
     socket.on('addPlayer', function (data) {
         console.info('addPlayer', arguments);
-
-
         var player = new Player(data);
         player.append(this.$playfield);
         this.players[player.id] = player;
@@ -47,7 +45,11 @@ ViewApp.prototype._connect = function () {
 
     socket.on('killPlayer', function (data) {
         console.info('killPlayer', arguments);
-    });
+
+        var player = this.players[data.id];
+        if (player) player.remove();
+        delete this.players[data.id];
+    }.bind(this));
 
     socket.on('playerAction', function (data) {
 //        console.info('playerAction', arguments);

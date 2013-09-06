@@ -24,6 +24,7 @@ Player.prototype.append = function ($container) {
 };
 
 Player.prototype.remove = function () {
+    this.$host.remove();
 };
 
 //Object.defineProperties(Player.prototype, {
