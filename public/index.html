@@ -4,8 +4,20 @@
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <div style="border: 1px solid red">
-            <img id="track" src="assets/track_boundary.svg" />
-        </div>
+        <img id="track" src="assets/track_boundary.svg" />
+        <script>
+            // Mock commonjs modules ;-)
+            var exports = {},
+                require = function (path) {
+                    return window;
+                };
+            var APP; // ;-)
+        </script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="js/client.js"></script>
+        <script>
+            var app = APP = new Client();
+            app.start();
+        </script>
     </body>
 </html>

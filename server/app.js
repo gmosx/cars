@@ -8,7 +8,6 @@ server.listen(8000);
 
 app.use(express.static(__dirname+'/../public'));
 
-
 io.sockets.on('connection', function (socket) {
   gameServer.addPlayer(socket)
 });
