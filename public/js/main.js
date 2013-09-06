@@ -30,7 +30,6 @@ ViewApp.prototype.start = function () {
 };
 
 ViewApp.prototype._bindEvents = function () {
-//    this.$playfield.on('keydown', this._onKeyDown.bind(this));
 };
 
 ViewApp.prototype._connect = function () {
@@ -56,39 +55,5 @@ ViewApp.prototype._connect = function () {
         this.car.update();
     }.bind(this));
 };
-
-//ViewApp.prototype._onKeyDown = function (e) {
-//    var handled = false;
-//
-//    switch (e.keyCode) {
-//        case 38: // UP
-//            this.car.move(5);
-//            handled = true;
-//            break;
-//
-//        case 40: // DOWN
-//            this.car.move(-5);
-//    this.server.sendToObservers('update', )
-//
-//            handled = true;
-//            break;
-//
-//        case 39: // LEFT
-//            this.car.angle += 1;
-//            handled = true;
-//            break;
-//
-//        case 37: // RIGHT
-//            this.car.angle -= 1;
-//            handled = true;
-//            break;
-//    }
-//
-//    if (handled) {
-//        this.car.update();
-//        e.preventDefault();
-//        e.stopPropagation();
-//    }
-//};
 
 exports.ViewApp = ViewApp;

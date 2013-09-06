@@ -16,7 +16,7 @@ body {
 
 .car {
     position: absolute;
-    width: 64px;
-    height: 37px;
+    width: 32px;
+    height: 19px;
     background: url(../assets/car.png);
 }
