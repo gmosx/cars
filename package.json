@@ -1,9 +1,12 @@
 {
-    "name": "cArs",
-    "contributors": [
-        {
-            "name": "George Moschovitis",
-            "email": "george.moschovitis@gmail.com"
-        }
-    ]
+  "name": "cArs",
+  "contributors": [
+    {
+      "name": "George Moschovitis",
+      "email": "george.moschovitis@gmail.com"
+    }
+  ],
+  "dependencies": {
+    "box2d": "~1.0.0"
+  }
 }
