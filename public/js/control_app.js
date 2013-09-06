@@ -1,5 +1,3 @@
-// TODO: Rename to ControlApp.
-
 /**
  * @constructor
  */
@@ -22,7 +20,7 @@ ControlApp.prototype.start = function () {
             on('accelerate', this.onAccelerate.bind(this)).
             on('rotate', this.onRotate.bind(this));
 
-    this.$playfield = $(document.body); // TODO: temp!
+    this.$playfield = $('#track');
 
     this.player = new Player({});
     this.player.x = 100;
