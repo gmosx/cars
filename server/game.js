@@ -42,7 +42,9 @@ Game.prototype.killPlayer = function (player) {
 Game.prototype._onTick = function () {
 
     this.players.forEach(function (p) {
-//        p.body
+        var v = p.body.m_linearVelocity;
+//        v.);
+        p.body.SetLinearVelocity(v);
     })
 
     this.world.Step(1.0 / 60, 1);
@@ -163,7 +165,7 @@ function createCar(world, x, y) {
     bd.position.Set(x, y);
     var body = world.CreateBody(bd);
     body.SetAngularVelocity(.5);
-    body.SetLinearVelocity(new b2d.b2Vec2(300,0))
+//    body.SetLinearVelocity(new b2d.b2Vec2(300, 0))
     console.log(body)
     return body;
 }

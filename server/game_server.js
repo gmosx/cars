@@ -42,7 +42,6 @@ Server.prototype = {
     },
 
     sendToObservers: function (event, data) {
-        console.log('asd', event, data)
         this.observers.forEach(function (o) {
             o.send(event, data);
         })
