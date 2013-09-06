@@ -1,0 +1,5 @@
+
+* Code that's used on server only, goes to src/server
+* Code that's used on client only, goes to src/client
+* Shared code goes to src/
+* The dimensions of the track are 900x675.
