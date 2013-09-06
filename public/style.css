@@ -4,3 +4,10 @@
     height: 675px;
     margin: auto;
 }
+
+.car {
+    position: absolute;
+    width: 37px;
+    height: 64px;
+    background: url(assets/car.png);
+}

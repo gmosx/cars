@@ -17,6 +17,21 @@ ViewApp.prototype.start = function () {
 //        correctLevel : QRCode.CorrectLevel.H
     });
 
+    this.connect();
+
+    var $playfield = $(document.body);
+
+    var car = new Car();
+    car.x = 100;
+    car.y = 200;
+
+    car.append($playfield);
+};
+
+ViewApp.prototype.bindEvents = function () {
+};
+
+ViewApp.prototype.connect = function () {
     var socket = io.connect('http://localhost:8000');
 
     socket.on('connect', function (data) {

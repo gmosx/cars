@@ -5,7 +5,7 @@
         <script src="libs/qrcode.min.js"></script>
     </head>
     <body>
-    <div id="qrCode"></div>
+        <div id="qrCode"></div>
         <img id="track" src="assets/track_boundary.svg" />
         <script>
             // Mock commonjs modules ;-)
@@ -15,9 +15,17 @@
                 };
             var APP; // ;-)
         </script>
+
+        <!-- Libraries -->
+        <script src="libs/jquery.min.js"></script>
         <script src="libs/qrcode.min.js"></script>
         <script src="/socket.io/socket.io.js"></script>
+
+        <!-- Our codes -->
+        <script src="js/car.js"></script>
         <script src="js/main.js"></script>
+
+        <!-- Let's start! -->
         <script>
             var app = APP = new ViewApp();
             app.start();
