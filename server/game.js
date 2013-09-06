@@ -20,7 +20,8 @@ Game.prototype.addPlayer = function (player) {
 
     player.
             on('accelerate', this._onAccelerate.bind(this, player)).
-            on('rotate', this._onRotate.bind(this, player));
+            on('rotate', this._onRotate.bind(this, player)).
+            on('brake', this._onBrake.bind(this, player));
 };
 
 Game.prototype.killPlayer = function (player) {
@@ -55,6 +56,11 @@ Game.prototype._onRotate = function (player, delta) {
     player.angle += delta;
 
 //    this.emit('update', player.toJSON());
+};
+
+Game.prototype._onBrake = function (player, data) {
+    player.v = 0;
+    player.a = 0;
 };
 
 exports.Game = Game;

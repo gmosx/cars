@@ -13,6 +13,8 @@ var Player = function (socket) {
     this.v = 0; // speed
     this.a = 0; // acceleration
 
+    this.isBraking = false;
+
     socket.on('disconnect', this.onDisconnect.bind(this));
     socket.on('accelerate', this.onAccelerate.bind(this));
     socket.on('brake', this.onBrake.bind(this));
