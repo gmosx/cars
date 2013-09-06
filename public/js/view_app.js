@@ -53,6 +53,7 @@ ViewApp.prototype._onAddPlayer = function (data) {
     var player = new Player(data);
     player.append(this.$playfield);
     this.players[player.id] = player;
+    console.log(':::::::', this.players);
 };
 
 ViewApp.prototype._onKillPlayer = function (data) {
@@ -62,11 +63,17 @@ ViewApp.prototype._onKillPlayer = function (data) {
 };
 
 ViewApp.prototype._onGameUpdate = function (data) {
-    var player = this.players[data.id];
-    player.x = data.x;
-    player.y = data.y;
-    player.angle = data.angle;
-    player.update();
+    if (data.players !== undefined) {
+        data.players.forEach(function (p) {
+            var player = this.players[p.id];
+if (player) {
+            player.x = p.x;
+            player.y = p.y;
+            player.angle = p.angle;
+            player.update();
+}
+        }.bind(this));
+    }
 };
 
 exports.ViewApp = ViewApp;
