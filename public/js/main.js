@@ -34,7 +34,7 @@ ViewApp.prototype._bindEvents = function () {
 };
 
 ViewApp.prototype._connect = function () {
-    var socket = io.connect(window.location.host);
+    var socket = io.connect();
 
     socket.on('connect', function (data) {
         console.log('connected to server:' + data);

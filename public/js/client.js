@@ -7,7 +7,7 @@ var Client = function () {
 };
 
 Client.prototype.start = function () {
-    this.socket = socket = io.connect(window.location.hosts);
+    this.socket = socket = io.connect();
 
     socket.on('connect', function (data) {
         console.log('connected to server:' + data);
