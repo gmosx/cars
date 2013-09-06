@@ -5,11 +5,7 @@ html, body {
   font: 16px Verdana, sans-serif; }
 
 #track {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  position: relative;
   width: 900px;
   height: 675px;
   margin: auto;
@@ -21,11 +17,44 @@ html, body {
   left: 0;
   margin: 20px; }
 
-.car {
+.player {
   position: absolute;
-  width: 32px;
-  height: 19px;
-  background: url(../assets/car.png) no-repeat; }
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 20px;
+  background-size: cover;
+  background-repeat: no-repeat; }
+
+.car1 {
+  background-image: url("../assets/car1.png"); }
+
+.racer1 {
+  color: gray; }
+
+.car2 {
+  background-image: url("../assets/car2.png"); }
+
+.racer2 {
+  color: royalblue; }
+
+.car3 {
+  background-image: url("../assets/car3.png"); }
+
+.racer3 {
+  color: red; }
+
+.car4 {
+  background-image: url("../assets/car4.png"); }
+
+.racer4 {
+  color: green; }
+
+.car5 {
+  background-image: url("../assets/car5.png"); }
+
+.racer5 {
+  color: yellow; }
 
 #racers {
   position: absolute;
@@ -48,6 +77,8 @@ html, body {
     width: 20px;
     height: 20px;
     margin-right: 10px; }
+  #racers .racer .name {
+    font-weight: bold; }
   #racers:empty {
     border-color: red; }
     #racers:empty:after {
