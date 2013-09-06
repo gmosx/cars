@@ -10,6 +10,8 @@ var Player = function (socket) {
     this.x = 390;
     this.y = 100;
     this.angle = 0; // angle in degrees.
+    this.v = 0; // speed
+    this.a = 0; // acceleration
 
     socket.on('disconnect', this.onDisconnect.bind(this));
     socket.on('accelerate', this.onAccelerate.bind(this));
@@ -45,6 +47,16 @@ Player.prototype.toJSON = function () {
         y: this.y,
         angle: this.angle
     };
+};
+
+Player.prototype.updatePosition = function () {
+    this.v += this.a;
+    if (this.v > 5) this.v = 5;
+    if (this.v < -5) this.v = -5;
+
+    var radians = (this.angle / 180.0) * Math.PI;
+    this.y += this.v * Math.sin(radians);
+    this.x += this.v * Math.cos(radians);
 };
 
 exports.Player = Player;

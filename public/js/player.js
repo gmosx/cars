@@ -3,6 +3,7 @@
  * @constructor
  */
 var Player = function (params) {
+
     this.$host = $('<div id="car"' + params.id + '" class="car"></div>');
     this.id = params.id;
     this.x = params.x;

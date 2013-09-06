@@ -10,7 +10,7 @@ var Game = function (params) {
     this.round = 0;
     this.players = [];
 
-    setInterval(this._onTick.bind(this), 200);
+    setInterval(this._onTick.bind(this), 17);
 };
 
 util.inherits(Game, EventEmitter);
@@ -30,6 +30,10 @@ Game.prototype.killPlayer = function (player) {
 Game.prototype._onTick = function () {
 //    console.log('------ tick');
 
+    this.players.forEach(function (p) {
+        p.updatePosition();
+    });
+
     this.emit('update', {
         players: this.players.map(function (p) { return p.toJSON(); })
     });
@@ -37,9 +41,12 @@ Game.prototype._onTick = function () {
 
 Game.prototype._onAccelerate = function (player, delta) {
     console.log('accelerate ', player.id, delta)
-    var radians = (player.angle / 180.0) * Math.PI;
-    player.y += delta * Math.sin(radians);
-    player.x += delta * Math.cos(radians);
+
+    player.a = delta / 100;
+
+//    var radians = (player.angle / 180.0) * Math.PI;
+//    player.y += delta * Math.sin(radians);
+//    player.x += delta * Math.cos(radians);
 
 //    this.emit('update', player.toJSON());
 };
