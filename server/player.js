@@ -6,6 +6,11 @@ var id = 0;
 var Player = function (socket) {
     this.socket = socket;
     this.id = id++;
+
+    this.x = 100;
+    this.y = 100;
+    this.angle = 0; // angle in degrees.
+
     socket.on('disconnect', this.onDisconnect.bind(this));
     socket.on('accelerate', this.onAccelerate.bind(this));
     socket.on('brake', this.onBrake.bind(this));

@@ -3,7 +3,7 @@ var Player = require('./player').Player,
     Game = require('./game.js').Game;
 
 var Server = function () {
-    this.game = new Game();
+    this.game = new Game({server: this});
     this.game.on('update', this.onGameUpdate.bind(this))
 };
 
@@ -55,6 +55,8 @@ Server.prototype = {
     },
 
     onGameUpdate: function (data) {
+        console.log('----------2', data);
+
         this.sendToObservers('gameUpdate', data);
     }
 };

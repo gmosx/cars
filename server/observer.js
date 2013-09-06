@@ -22,6 +22,6 @@ Observer.prototype.sendPlayers = function (players) {
             id: p.id
         }
     }))
-}
+};
 
 exports.Observer = Observer;
