@@ -35,15 +35,10 @@ ViewApp.prototype._connect = function () {
     this.socket = io.connect();
 
     this.socket.on('connect', this._onConnect.bind(this));
-
     this.socket.on('addPlayer', this._onAddPlayer.bind(this));
-
     this.socket.on('killPlayer', this._onKillPlayer.bind(this));
-
-    this.socket.on('playerAction', function (data) {
-//        console.info('playerAction', arguments);
-    });
-
+    this.socket.on('playerAction', this.onPlayerAction.bind(this));
+    this.socket.on('playerList', this.onPlayerList.bind(this));
     this.socket.on('gameUpdate', this._onGameUpdate.bind(this));
 };
 
@@ -92,6 +87,15 @@ ViewApp.prototype.removeRacer = function (player) {
 };
 
 ViewApp.prototype.updateRacer = function (id) {
+};
+
+ViewApp.prototype.onPlayerList = function (list) {
+    (list || []).forEach(this._onAddPlayer, this);
+    console.info('playerList', arguments);
+};
+
+ViewApp.prototype.onPlayerAction = function () {
+    console.info('playerAction', arguments);
 };
 
 
