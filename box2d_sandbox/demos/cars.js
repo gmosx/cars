@@ -1,6 +1,6 @@
 demos.cars = {};
 
-b2Settings.b2_maxPolyVertices = 128;
+b2Settings.b2_maxPolyVertices = 256;
 
 function parseVertixes(path) {
     var toPair = function(v) {
@@ -35,9 +35,9 @@ b2MapDefOuter.vertices = outerVertexes;
 console.log(outerVertexes)
 
 function line(x1, y1, x2, y2) {
-    var w = 1,
+    var w = 5,
         pd = new b2PolyDef();
-    if ( x1 > x2 || y1 < y2 ) {
+    if ( x1 > x2 ) {
         x1 += x2;
         x2 = x1 - x2;
         x1 = x1 - x2;
@@ -50,9 +50,11 @@ function line(x1, y1, x2, y2) {
     pd.vertices = [
         [x1,y1],
         [x2,y2],
-        [x2 + w, y2 + w],
-        [x1 + w, y1 + w]
-    ].map(function(p){ return new b2Vec2(p[0], p[1]); });
+        [x2, y2 + w],
+        [x1, y1 + w]
+    ]
+
+    pd.vertices = pd.vertices.map(function(p){ return new b2Vec2(p[0], p[1]); });
     pd.vertexCount = pd.vertices.length;
     pd.restitution = .3;
     pd.friction = .5;
@@ -71,6 +73,7 @@ function buildOuterShape(points) {
         prev = cur;
     }
     shp.AddShape(line(first.x, first.y, prev.x, prev.y));
+    //shp.AddShape(line( prev.x, prev.y, first.x, first.y));
     return shp;
 }
 

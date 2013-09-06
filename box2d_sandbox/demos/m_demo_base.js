@@ -1,13 +1,10 @@
 function createWorld() {
     var worldAABB = new b2AABB();
     worldAABB.minVertex.Set(0, 0);
-    worldAABB.maxVertex.Set(900, 675);
+    worldAABB.maxVertex.Set(1950, 685);
     var gravity = new b2Vec2(0, 0);
     var doSleep = true;
     var world = new b2World(worldAABB, gravity, doSleep);
-    //createGround(world);
-    //createBox(world, 0, 125, 10, 250);
-    //createBox(world, 500, 125, 10, 250);
     return world;
 }
 
@@ -27,7 +24,7 @@ function createBall(world, x, y) {
     ballSd.radius = 10;
     ballSd.restitution = 1.0;
     ballSd.friction = 0;
-    var vel = new b2Vec2(Math.random()*100, Math.random()*100);
+    var vel = new b2Vec2(Math.random()*300 - 150, Math.random()*100 - 50);
     var ballBd = new b2BodyDef();
     ballBd.AddShape(ballSd);
     ballBd.position.Set(x,y);
