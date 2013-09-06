@@ -1,3 +1,5 @@
+// TODO: Rename to ControlApp.
+
 /**
  * @constructor
  */

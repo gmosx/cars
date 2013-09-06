@@ -43,11 +43,13 @@ ViewApp.prototype._connect = function () {
 
     socket.on('player-connect', function (data) {
         document.getElementById("playerNum").innerText = data;
-    })
+    });
 
     socket.on('player-disconnect', function (data) {
         document.getElementById("playerNum").innerText = data;
-    })
+    });
+
+    socket.on('accelerate')
 };
 
 ViewApp.prototype._onKeyDown = function (e) {

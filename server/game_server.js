@@ -1,9 +1,9 @@
 var Player = require('./player').Player,
     Observer = require('./observer').Observer;
 
-
 var Server = function () {
-}
+    this.game = new Game();
+};
 
 Server.prototype = {
     constructor: Server,
@@ -43,6 +43,6 @@ Server.prototype = {
 
 exports.createServer = function () {
     return new Server();
-}
+};
 
 
