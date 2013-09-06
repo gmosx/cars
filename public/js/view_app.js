@@ -80,6 +80,7 @@ if (player) {
 ViewApp.prototype.addRacer = function (player) {
     var $racer = $('<div class="racer"></div>').appendTo(this.$racers);
 
+    $racer.addClass(player.racerClassName);
     $racer.wheel = $('<span class="wheel"/>').appendTo($racer);
     $racer.name = $('<span class="name"/>').text('Player '+ player.id).appendTo($racer);
 

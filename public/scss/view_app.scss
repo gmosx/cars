@@ -6,15 +6,18 @@ html, body {
 }
 
 #track {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 900px;
-  height: 675px;
+  $width: 900px;
+  $height: 675px;
+
+  position: relative;
+  width: $width;
+  height: $height;
+  //left: - floor($width / 2);
+  //top: - floor($width / 2);
+  //margin: 50%;
   margin: auto;
   background: url(../assets/track_boundary.svg) no-repeat center;
+  //-webkit-transform: translate(50%, 50%);
 }
 
 #qrCode {
@@ -24,11 +27,27 @@ html, body {
   margin: 20px;
 }
 
-.car {
+.player {
   position: absolute;
-  width: 32px;
-  height: 19px;
-  background: url(../assets/car.png) no-repeat;
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 20px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+$carColors: gray, royalblue, red, green, yellow;
+$racer: 1;
+$racers: 5;
+@while $racer <= $racers {
+  .car#{$racer} {
+    background-image: url('../assets/car#{$racer}.png');
+  }
+  .racer#{$racer} {
+    color: nth($carColors, $racer);
+  }
+  $racer: $racer + 1;
 }
 
 #racers {
@@ -57,6 +76,9 @@ html, body {
       width: 20px;
       height: 20px;
       margin-right: 10px;
+    }
+    .name {
+      font-weight: bold;
     }
   }
 
