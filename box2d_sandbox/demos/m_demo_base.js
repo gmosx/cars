@@ -1,7 +1,7 @@
 function createWorld() {
     var worldAABB = new b2AABB();
     worldAABB.minVertex.Set(0, 0);
-    worldAABB.maxVertex.Set(1950, 685);
+    worldAABB.maxVertex.Set(950, 685);
     var gravity = new b2Vec2(0, 0);
     var doSleep = true;
     var world = new b2World(worldAABB, gravity, doSleep);
@@ -27,6 +27,7 @@ function createBall(world, x, y) {
     var vel = new b2Vec2(Math.random()*300 - 150, Math.random()*100 - 50);
     var ballBd = new b2BodyDef();
     ballBd.AddShape(ballSd);
+    ballBd.linearDamping = 0.0075;
     ballBd.position.Set(x,y);
     var bd =  world.CreateBody(ballBd);
     bd.SetLinearVelocity(vel);

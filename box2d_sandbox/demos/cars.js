@@ -1,7 +1,3 @@
-demos.cars = {};
-
-b2Settings.b2_maxPolyVertices = 256;
-
 function parseVertixes(path) {
     var toPair = function(v) {
             var p = v.split(' ');
@@ -27,13 +23,6 @@ var b2MapDefInner = new b2PolyDef(),
         '676.064 1012.735, 815.425 1008.479, 854.787 998.905, 882.447 968.054, 899.468 906.352, ' +
         '851.596 495.713, 831.383 452.096, 797.340 430.820, 764.362 420.181');
 
-b2MapDefInner.vertexCount = innerVertexes.length;
-b2MapDefInner.vertices = innerVertexes;
-
-b2MapDefOuter.vertexCount = outerVertexes.length;
-b2MapDefOuter.vertices = outerVertexes;
-console.log(outerVertexes)
-
 function line(x1, y1, x2, y2) {
     var w = 5,
         pd = new b2PolyDef();
@@ -56,8 +45,8 @@ function line(x1, y1, x2, y2) {
 
     pd.vertices = pd.vertices.map(function(p){ return new b2Vec2(p[0], p[1]); });
     pd.vertexCount = pd.vertices.length;
-    pd.restitution = .3;
-    pd.friction = .5;
+    pd.restitution = .1;
+    pd.friction = .7;
     return pd;
 }
 
@@ -73,7 +62,6 @@ function buildOuterShape(points) {
         prev = cur;
     }
     shp.AddShape(line(first.x, first.y, prev.x, prev.y));
-    //shp.AddShape(line( prev.x, prev.y, first.x, first.y));
     return shp;
 }
 
@@ -86,8 +74,21 @@ function createTrack(world) {
     world.CreateBody(inner);
 }
 
-demos.cars.initWorld = function(world) {
+function createCar(world, x, y) {
+    var cd = new b2BoxDef(),
+        bd = new b2BodyDef();
+    cd.extents.Set(20, 10);
+    cd.density = 1.0;
+    bd.AddShape(cd);
+    bd.position.Set(x, y);
+    var body = world.CreateBody(bd);
+    body.SetAngularVelocity(.5);
+    return body;
+}
+
+function initCarsWorld(world) {
     createTrack(world);
+    createCar(world, 450, 150);
     //createBall(world, 500, 300);
 }
-demos.InitWorlds.push(demos.cars.initWorld);
+demos.InitWorlds.push(initCarsWorld);

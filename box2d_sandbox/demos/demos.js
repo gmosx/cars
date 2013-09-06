@@ -34,12 +34,7 @@ Event.observe(window, 'load', function() {
 	canvasTop = parseInt(canvasElm.style.top);
 	canvasLeft = parseInt(canvasElm.style.left);
 	Event.observe('canvas', 'click', function(e) {
-        //return;
-		//setupNextWorld();
-		if (Math.random() < 1)
-			createBall(world, Event.pointerX(e) - canvasLeft, Event.pointerY(e) - canvasTop);
-		else 
-			createBox(world, Event.pointerX(e) - canvasLeft, Event.pointerY(e) - canvasTop, 10, 10, false);
+	    createBall(world, Event.pointerX(e) - canvasLeft, Event.pointerY(e) - canvasTop);
 	});
 	Event.observe('canvas', 'contextmenu', function(e) {
 		if (e.preventDefault) e.preventDefault();
