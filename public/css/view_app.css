@@ -1,8 +1,17 @@
+body {
+    margin: 0;
+}
 
 #track {
     width: 900px;
     height: 675px;
     margin: auto;
+}
+
+#qrCode {
+    position: absolute;
+    top: 5px;
+    right: 5px;
 }
 
 .car {
