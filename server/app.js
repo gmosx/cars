@@ -6,9 +6,15 @@ var express = require('express')
 
 server.listen(8000);
 
-app.use(express.static(__dirname+'/../public'));
+app.use(express.static(__dirname + '/../public'));
 
 io.sockets.on('connection', function (socket) {
-  gameServer.addPlayer(socket)
+    socket.on('ready', function (type) {
+        if (type == 'player') {
+            gameServer.addPlayer(socket)
+        } else {
+            gameServer.addObserver(socket)
+        }
+    })
 });
 

@@ -9,6 +9,7 @@ Client.prototype.start = function () {
 
     socket.on('connect', function (data) {
         console.log('connected to server:' + data);
+        socket.emit('ready','player');
     });
 };
 
