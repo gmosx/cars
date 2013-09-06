@@ -10,7 +10,7 @@ var Game = function (params) {
     this.round = 0;
     this.players = [];
 
-    setInterval(this._onTick.bind(this), 20);
+    setInterval(this._onTick.bind(this), 200);
 };
 
 util.inherits(Game, EventEmitter);
@@ -36,6 +36,7 @@ Game.prototype._onTick = function () {
 };
 
 Game.prototype._onAccelerate = function (player, delta) {
+    console.log('accelerate ', player.id, delta)
     var radians = (player.angle / 180.0) * Math.PI;
     player.y += delta * Math.sin(radians);
     player.x += delta * Math.cos(radians);

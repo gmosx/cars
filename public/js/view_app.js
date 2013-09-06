@@ -63,6 +63,7 @@ ViewApp.prototype._onKillPlayer = function (data) {
 };
 
 ViewApp.prototype._onGameUpdate = function (data) {
+    console.log(data.players[0].x)
     if (data.players !== undefined) {
         data.players.forEach(function (p) {
             var player = this.players[p.id];

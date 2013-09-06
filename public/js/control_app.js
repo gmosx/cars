@@ -12,13 +12,13 @@ ControlApp.prototype.start = function () {
         socket.emit('ready', 'player');
     });
 
-    this.controller = new Controller();
-    $(this.controller).on('accelerate', this.onAccelerate.bind(this));
-
-//    this.desktopController = new DesktopController();
-//    $(this.desktopController).
-//            on('accelerate', this.onAccelerate.bind(this)).
-//            on('rotate', this.onRotate.bind(this));
+//    this.controller = new Controller();
+//    $(this.controller).on('accelerate', this.onAccelerate.bind(this));
+//
+    this.desktopController = new DesktopController();
+    $(this.desktopController).
+            on('accelerate', this.onAccelerate.bind(this)).
+            on('rotate', this.onRotate.bind(this));
 
     this.$playfield = $('#track');
 
