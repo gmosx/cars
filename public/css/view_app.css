@@ -36,11 +36,14 @@ html, body {
   padding: 5px;
   width: 200px;
   min-height: 100px;
-  background: white; }
-  #racers:empty:after {
-    content: 'No racers! Be first! ;)';
-    display: block;
-    height: 100%;
-    text-align: center;
-    line-height: 100px;
-    color: red; }
+  background: white;
+  white-space: nowrap; }
+  #racers:empty {
+    border-color: red; }
+    #racers:empty:after {
+      content: 'No racers! Be first! ;)';
+      display: block;
+      height: 100%;
+      text-align: center;
+      line-height: 100px;
+      color: red; }

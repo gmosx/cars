@@ -7,6 +7,7 @@ var io = require('socket.io').io,
  */
 var ViewApp = function (params) {
     this.players = {};
+    this.racersList = {};
     this.socket = undefined;
 };
 
@@ -21,6 +22,7 @@ ViewApp.prototype.start = function () {
     });
 
     this.$playfield = $('#track'); // TODO: temp!
+    this.$racers = $('#racers');
 
     this._bindEvents();
     this._connect();
@@ -53,12 +55,14 @@ ViewApp.prototype._onAddPlayer = function (data) {
     var player = new Player(data);
     player.append(this.$playfield);
     this.players[player.id] = player;
+    this.addRacer(player);
 };
 
 ViewApp.prototype._onKillPlayer = function (data) {
     var player = this.players[data.id];
     if (player) player.remove();
     delete this.players[data.id];
+    this.removeRacer(player);
 };
 
 ViewApp.prototype._onGameUpdate = function (data) {
@@ -68,5 +72,25 @@ ViewApp.prototype._onGameUpdate = function (data) {
     player.angle = data.angle;
     player.update();
 };
+
+ViewApp.prototype.addRacer = function (player) {
+    var $racer = $('<div class="racer"></div>').appendTo(this.$racers);
+
+    $racer.wheel = $('<span class="steering-wheel"/>').appendTo($racer);
+    $racer.name = $('<span class="name"/>').text('Player '+ player.id).appendTo($racer);
+
+    this.racersList[player.id] = $racer;
+};
+
+ViewApp.prototype.removeRacer = function (player) {
+    var $racer = this.racersList[player.id];
+    if (!$racer) return;
+    $racer.remove();
+    delete this.racersList[player.id];
+};
+
+ViewApp.prototype.updateRacer = function (id) {
+};
+
 
 exports.ViewApp = ViewApp;

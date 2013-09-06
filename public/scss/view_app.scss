@@ -43,13 +43,19 @@ html, body {
   width: 200px;
   min-height: $minHeight;
   background: white;
+  white-space: nowrap;
 
-  &:empty:after {
-    content: 'No racers! Be first! ;)';
-    display: block;
-    height: 100%;
-    text-align: center;
-    line-height: $minHeight;
-    color: red;
+  &:empty {
+    $color: red;
+    border-color: $color;
+
+    &:after {
+      content: 'No racers! Be first! ;)';
+      display: block;
+      height: 100%;
+      text-align: center;
+      line-height: $minHeight;
+      color: $color;
+    }
   }
 }
