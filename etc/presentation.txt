@@ -6,3 +6,5 @@ Monetization
 
 Utilize as a social campaign platform for facebook, g+, etc.
 To be used by brands.
+
+Game for real-world events.

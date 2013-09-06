@@ -7,6 +7,7 @@ var io = require('socket.io').io,
  */
 var ViewApp = function (params) {
     this.players = {};
+    this.socket = undefined;
 };
 
 ViewApp.prototype.start = function () {
@@ -29,40 +30,43 @@ ViewApp.prototype._bindEvents = function () {
 };
 
 ViewApp.prototype._connect = function () {
-    var socket = io.connect();
+    this.socket = io.connect();
 
-    socket.on('connect', function (data) {
-        console.log('connected to server:' + data);
-        socket.emit('ready','observer');
-    });
+    this.socket.on('connect', this._onConnect.bind(this));
 
-    socket.on('addPlayer', function (data) {
-        console.info('addPlayer', arguments);
-        var player = new Player(data);
-        player.append(this.$playfield);
-        this.players[player.id] = player;
-    }.bind(this));
+    this.socket.on('addPlayer', this._onAddPlayer.bind(this));
 
-    socket.on('killPlayer', function (data) {
-        console.info('killPlayer', arguments);
+    this.socket.on('killPlayer', this._onKillPlayer.bind(this));
 
-        var player = this.players[data.id];
-        if (player) player.remove();
-        delete this.players[data.id];
-    }.bind(this));
-
-    socket.on('playerAction', function (data) {
+    this.socket.on('playerAction', function (data) {
 //        console.info('playerAction', arguments);
     });
 
-    socket.on('gameUpdate', function (data) {
-        console.log('gameUpdate', arguments);
-        var player = this.players[data.id];
-        player.x = data.x;
-        player.y = data.y;
-        player.angle = data.angle;
-        player.update();
-    }.bind(this));
+    this.socket.on('gameUpdate', this._onGameUpdate.bind(this));
+};
+
+ViewApp.prototype._onConnect = function () {
+    this.socket.emit('ready','observer');
+};
+
+ViewApp.prototype._onAddPlayer = function (data) {
+    var player = new Player(data);
+    player.append(this.$playfield);
+    this.players[player.id] = player;
+};
+
+ViewApp.prototype._onKillPlayer = function (data) {
+    var player = this.players[data.id];
+    if (player) player.remove();
+    delete this.players[data.id];
+};
+
+ViewApp.prototype._onGameUpdate = function (data) {
+    var player = this.players[data.id];
+    player.x = data.x;
+    player.y = data.y;
+    player.angle = data.angle;
+    player.update();
 };
 
 exports.ViewApp = ViewApp;
