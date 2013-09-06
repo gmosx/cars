@@ -16,4 +16,12 @@ Observer.prototype.send = function (event, data) {
     this.socket.emit(event, data)
 };
 
+Observer.prototype.sendPlayers = function (players) {
+    this.socket.emit('playerList', players.map(function (p) {
+        return {
+            id: p.id
+        }
+    }))
+}
+
 exports.Observer = Observer;

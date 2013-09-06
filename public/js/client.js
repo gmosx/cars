@@ -38,7 +38,7 @@ Client.prototype.onAccelerate = function (e,data) {
 };
 
 Client.prototype.onBrake = function (e) {
-    socket.emit('break');
+    socket.emit('brake');
 };
 
 Client.prototype.onRotate = function (e, data) {
