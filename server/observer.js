@@ -1,16 +1,15 @@
 var util = require('util'),
     EventEmitter = require('events').EventEmitter;
 
-var Player = function (socket) {
+var Observer = function (socket) {
     this.socket = socket;
     socket.on('disconnect', this.onDisconnect.bind(this));
-    console.log('new client connected')
 };
 
-util.inherits(Player, EventEmitter);
+util.inherits(Observer, EventEmitter);
 
-Player.prototype.onDisconnect = function () {
+Observer.prototype.onDisconnect = function () {
     this.emit('dispose');
 };
 
-exports.Player = Player;
+exports.Observer = Observer;
