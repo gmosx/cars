@@ -21,7 +21,6 @@ Game.prototype._onAccelerate = function (player, delta) {
 };
 
 Game.prototype._onRotate = function (player, delta) {
-    console.log('!!!!!!!!!2231312312');
     player.angle += delta;
 
     this.emit('update', {x: player.x, y: player.y, angle: player.angle});

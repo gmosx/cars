@@ -1,3 +1,0 @@
-
-var Car = function (params) {
-};
