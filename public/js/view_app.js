@@ -13,7 +13,7 @@ var ViewApp = function (params) {
 
 ViewApp.prototype.start = function () {
     new QRCode(document.getElementById("qrCode"), {
-        text: window.location.host + '/player.html',
+        text: window.location.host + '/control_app.html',
         width: 128,
         height: 128,
         colorDark: "#000000",
@@ -63,11 +63,18 @@ ViewApp.prototype._onKillPlayer = function (data) {
 };
 
 ViewApp.prototype._onGameUpdate = function (data) {
-    var player = this.players[data.id];
-    player.x = data.x;
-    player.y = data.y;
-    player.angle = data.angle;
-    player.update();
+    console.log(data.players[0].x)
+    if (data.players !== undefined) {
+        data.players.forEach(function (p) {
+            var player = this.players[p.id];
+if (player) {
+            player.x = p.x;
+            player.y = p.y;
+            player.angle = p.angle;
+            player.update();
+}
+        }.bind(this));
+    }
 };
 
 ViewApp.prototype.addRacer = function (player) {

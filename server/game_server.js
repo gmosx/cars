@@ -14,25 +14,24 @@ Server.prototype = {
 
     addPlayer: function (socket) {
         var player = new Player(socket);
-        this.players.push(player);
         player.on('dispose', this.killPlayer.bind(this, player));
         player.on('action', this.onPlayerAction.bind(this, player));
-        console.log('new player added! Number of players:', this.players.length);
-        player.y = 80 + (this.players.indexOf(player) * 25);
+        player.y = 80 + (this.game.players.indexOf(player) * 25);
         this.sendToObservers('addPlayer', player.toJSON());
         this.game.addPlayer(player);
+        console.log('new player added! Number of players:', this.game.players.length);
     },
 
     killPlayer: function (player) {
-        this.players.splice(this.players.indexOf(player), 1);
-        console.log('Player killed. Number of players:', this.players.length);
+        this.game.killPlayer(player);
         this.sendToObservers('killPlayer', player.toJSON());
+        console.log('Player killed. Number of players:', this.game.players.length);
     },
 
     addObserver: function (socket) {
         var observer = new Observer(socket);
         this.observers.push(observer);
-        observer.sendPlayers(this.players);
+        observer.sendPlayers(this.game.players);
         observer.on('dispose', this.killObserver.bind(this, observer));
         console.log('new observer added! Number of observers:', this.observers.length);
     },
@@ -49,6 +48,7 @@ Server.prototype = {
     },
 
     onPlayerAction: function (player, data) {
+        console.log('player action: ', player.id, data);
         this.sendToObservers('playerAction', {
             id: player.id,
             action: data
@@ -56,7 +56,7 @@ Server.prototype = {
     },
 
     onGameUpdate: function (data) {
-        console.log('----------2', data);
+//        console.log('----------2', data);
 
         this.sendToObservers('gameUpdate', data);
     }

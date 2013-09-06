@@ -14,7 +14,7 @@ ControlApp.prototype.start = function () {
 
 //    this.controller = new Controller();
 //    $(this.controller).on('accelerate', this.onAccelerate.bind(this));
-
+//
     this.desktopController = new DesktopController();
     $(this.desktopController).
             on('accelerate', this.onAccelerate.bind(this)).
@@ -30,6 +30,7 @@ ControlApp.prototype.start = function () {
 };
 
 ControlApp.prototype.onAccelerate = function (e,data) {
+    $('.value').text(data);
     this.player.move(data);
     this.player.update();
     socket.emit('accelerate', data);
