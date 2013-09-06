@@ -41,16 +41,20 @@ ViewApp.prototype._connect = function () {
         socket.emit('ready','observer');
     });
 
-    socket.on('player-connect', function (data) {
-        document.getElementById("playerNum").innerText = data;
+    socket.on('addPlayer', function (data) {
+        console.info('addPlayer', arguments);
     });
 
-    socket.on('player-disconnect', function (data) {
-        document.getElementById("playerNum").innerText = data;
+    socket.on('killPlayer', function (data) {
+        console.info('killPlayer', arguments);
+    });
+
+    socket.on('playerAction', function (data) {
+        console.info('playerAction', arguments);
     });
 
     socket.on('gameUpdate', function (data) {
-        console.log('!!!!!!!!!!!!');
+        console.log('gameUpdate', arguments);
         this.car.x = data.x;
         this.car.y = data.y;
         this.car.angle = data.angle;
