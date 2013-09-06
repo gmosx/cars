@@ -49,7 +49,7 @@ ViewApp.prototype._connect = function () {
     });
 
     socket.on('playerAction', function (data) {
-        console.info('playerAction', arguments);
+//        console.info('playerAction', arguments);
     });
 
     socket.on('gameUpdate', function (data) {

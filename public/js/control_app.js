@@ -3,10 +3,10 @@
 /**
  * @constructor
  */
-var Client = function () {
+var ControlApp = function () {
 };
 
-Client.prototype.start = function () {
+ControlApp.prototype.start = function () {
     this.socket = socket = io.connect();
 
     socket.on('connect', function (data) {
@@ -31,22 +31,22 @@ Client.prototype.start = function () {
     this.car.append(this.$playfield);
 };
 
-Client.prototype.onAccelerate = function (e,data) {
+ControlApp.prototype.onAccelerate = function (e,data) {
     this.car.move(data);
     this.car.update();
     socket.emit('accelerate', data);
 };
 
-Client.prototype.onBrake = function (e) {
+ControlApp.prototype.onBrake = function (e) {
     socket.emit('brake');
 };
 
-Client.prototype.onRotate = function (e, data) {
+ControlApp.prototype.onRotate = function (e, data) {
     this.car.angle += data;
     this.car.update();
     socket.emit('rotate', data);
 };
 
 $(function () {
-    new Client().start();
+    new ControlApp().start();
 });
