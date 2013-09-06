@@ -13,7 +13,7 @@ function parseVertixes(path) {
         toVertex = function(pair) {
             return new b2Vec2(pair.x, pair.y);
         };
-    return path.split(', ').map(toPair)//.map(toVertex);
+    return path.split(', ').map(toPair).map(function(p) {p.x += .1; return p; }).map(toVertex);
 }
 
 var b2MapDefInner = new b2PolyDef(),
@@ -25,9 +25,7 @@ var b2MapDefInner = new b2PolyDef(),
         '0.532 932.947, 15.426 973.373, 47.340 997.841, 73.936 1009.543, 317.553 1013.798, ' +
         '372.872 984.011, 400.532 929.756, 386.702 755.288, 400.532 752.096, 647.340 999.969, ' +
         '676.064 1012.735, 815.425 1008.479, 854.787 998.905, 882.447 968.054, 899.468 906.352, ' +
-        '851.596 495.713, 831.383 452.096, 797.340 430.820, 764.362 420.181'),
-    innerVertexes = parseVertixes('120 120, 250 120, 320 150, 250 180, 120 180'),
-    outerVertexes =  parseVertixes('100 100, 300 100, 350 150, 300 200, 100 200');
+        '851.596 495.713, 831.383 452.096, 797.340 430.820, 764.362 420.181');
 
 b2MapDefInner.vertexCount = innerVertexes.length;
 b2MapDefInner.vertices = innerVertexes;
@@ -39,7 +37,7 @@ console.log(outerVertexes)
 function line(x1, y1, x2, y2) {
     var w = 1,
         pd = new b2PolyDef();
-    if ( x1 > x2 ) {
+    if ( x1 > x2 || y1 < y2 ) {
         x1 += x2;
         x2 = x1 - x2;
         x1 = x1 - x2;
@@ -77,16 +75,12 @@ function buildOuterShape(points) {
 }
 
 function createTrack(world) {
-    var trackOuterBd = buildOuterShape([
-        {x: 100, y: 200},
-        {x: 500, y: 300},
-        {x: 800, y: 200},
-        {x: 400, y: 50}
-    ]);
-    //trackOuterBd.AddShape(b2MapDefOuter);
-    //trackOuterBd.AddShape(b2MapDefInner);
-    trackOuterBd.position.Set(0, 0);
-    outer = world.CreateBody(trackOuterBd);
+    var outer = buildOuterShape(outerVertexes),
+        inner = buildOuterShape(innerVertexes);
+    outer.position.Set(0, -370);
+    inner.position.Set(0, -370);
+    world.CreateBody(outer);
+    world.CreateBody(inner);
 }
 
 demos.cars.initWorld = function(world) {

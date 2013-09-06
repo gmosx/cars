@@ -37,7 +37,7 @@ Event.observe(window, 'load', function() {
         //return;
 		//setupNextWorld();
 		if (Math.random() < 1)
-			demos.top.createBall(world, Event.pointerX(e) - canvasLeft, Event.pointerY(e) - canvasTop);
+			createBall(world, Event.pointerX(e) - canvasLeft, Event.pointerY(e) - canvasTop);
 		else 
 			createBox(world, Event.pointerX(e) - canvasLeft, Event.pointerY(e) - canvasTop, 10, 10, false);
 	});
