@@ -18,9 +18,7 @@ Client.prototype.start = function () {
     this.desktopController = new DesktopController();
     $(this.desktopController).
             on('accelerate', this.onAccelerate.bind(this)).
-            on('brake', this.onBrake.bind(this)).
-            on('left', this.onLeft.bind(this)).
-            on('right', this.onRight.bind(this));
+            on('rotate', this.onRotate.bind(this));
 
     this.$playfield = $(document.body); // TODO: temp!
 
@@ -29,49 +27,23 @@ Client.prototype.start = function () {
     this.car.y = 200;
 
     this.car.append(this.$playfield);
-
-
-    requestAnimationFrame(this.onTick.bind(this));
 };
 
 Client.prototype.onAccelerate = function (e,data) {
-    $('#accel .value').text(data);
+    this.car.move(data);
+    this.car.update();
     socket.emit('accelerate', data);
-}
-
-Client.prototype.onBrake = function (e, data) {
-    this.car.move(-data);
-    this.car.update();
 };
 
-Client.prototype.onLeft = function (e, data) {
-    this.car.angle -= data;
-    this.car.update();
+Client.prototype.onBrake = function (e) {
+    socket.emit('break');
 };
 
-Client.prototype.onRight = function (e, data) {
+Client.prototype.onRotate = function (e, data) {
     this.car.angle += data;
     this.car.update();
 };
 
-Client.prototype.onTick = function () {
-//
-//
-//    function step(timestamp) {
-//        var progress;
-//        if (start === null) start = timestamp;
-//        progress = timestamp - start;
-//        d.style.left = Math.min(progress/10, 200) + "px";
-//        if (progress < 2000) {
-//            requestAnimationFrame(step);
-//        }
-//    }
-//
-//
-//
-};
-
 $(function () {
-// run client
     new Client().start();
 });

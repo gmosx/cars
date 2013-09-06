@@ -1,3 +1,4 @@
+// TODO: extract as KeyManager.
 
 /**
  * @param params
@@ -16,6 +17,7 @@ DesktopController.prototype._bindEvents = function () {
 
 DesktopController.prototype._onKeyDown = function (e) {
     switch (e.keyCode) {
+        case 32: // SPACE
         case 38: // UP
         case 40: // DOWN
         case 39: // LEFT
@@ -30,6 +32,7 @@ DesktopController.prototype._onKeyDown = function (e) {
 
 DesktopController.prototype._onKeyUp = function (e) {
     switch (e.keyCode) {
+        case 32: // SPACE
         case 38: // UP
         case 40: // DOWN
         case 39: // LEFT
@@ -41,10 +44,11 @@ DesktopController.prototype._onKeyUp = function (e) {
 };
 
 DesktopController.prototype._onKey = function (e) {
-    if (this.keys['38']) $(this).trigger('accelerate', 5);
-    if (this.keys['40']) $(this).trigger('brake', 5);
-    if (this.keys['39']) $(this).trigger('left', 1);
-    if (this.keys['37']) $(this).trigger('right', 1);
+    if (this.keys[32]) $(this).trigger('break');
+    if (this.keys[38]) $(this).trigger('accelerate', 5);
+    if (this.keys[40]) $(this).trigger('accelerate', -5);
+    if (this.keys[39]) $(this).trigger('rotate', 3);
+    if (this.keys[37]) $(this).trigger('rotate', -3);
 };
 
 exports.DesktopController = DesktopController;
