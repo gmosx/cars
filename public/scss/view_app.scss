@@ -37,7 +37,7 @@ html, body {
   background-repeat: no-repeat;
 }
 
-$carColors: gray, royalblue, red, green, yellow;
+$carColors: gray, royalblue, red, green, gold;
 $racer: 1;
 $racers: 5;
 @while $racer <= $racers {
@@ -76,9 +76,6 @@ $racers: 5;
       width: 20px;
       height: 20px;
       margin-right: 10px;
-    }
-    .name {
-      font-weight: bold;
     }
   }
 

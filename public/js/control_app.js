@@ -18,7 +18,8 @@ ControlApp.prototype.start = function () {
     this.desktopController = new DesktopController();
     $(this.desktopController).
             on('accelerate', this.onAccelerate.bind(this)).
-            on('rotate', this.onRotate.bind(this));
+            on('rotate', this.onRotate.bind(this)).
+            on('break', this.onBrake.bind(this));
 
     this.$playfield = $('#track');
 
@@ -36,8 +37,8 @@ ControlApp.prototype.onAccelerate = function (e,data) {
     socket.emit('accelerate', data);
 };
 
-ControlApp.prototype.onBrake = function (e) {
-    socket.emit('brake');
+ControlApp.prototype.onBrake = function (e, data) {
+    socket.emit('brake', data);
 };
 
 ControlApp.prototype.onRotate = function (e, data) {
