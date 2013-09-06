@@ -54,7 +54,7 @@ html, body {
   background-image: url("../assets/car5.png"); }
 
 .racer5 {
-  color: yellow; }
+  color: gold; }
 
 #racers {
   position: absolute;
@@ -77,8 +77,6 @@ html, body {
     width: 20px;
     height: 20px;
     margin-right: 10px; }
-  #racers .racer .name {
-    font-weight: bold; }
   #racers:empty {
     border-color: red; }
     #racers:empty:after {

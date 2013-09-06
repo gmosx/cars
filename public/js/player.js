@@ -1,24 +1,17 @@
-var carNumber = 1;
-var maxCarsNumber = 5;
-var startPosition = [300, 50];
-
 /**
  * @constructor
  */
 var Player = function (params) {
-    this.$host = $('<div class="player"/>').attr('id', 'car'+ params.id);
-    this.$host.css({left: startPosition[0], top: startPosition[1] + (carNumber - 1) * 30});
-
-    carNumber++;
-    this.$host.addClass('car'+ carNumber);
-    this.racerClassName = 'racer' + carNumber;
-
+    this.carNumber = params.carNumber;
     this.id = params.id;
     this.x = params.x;
     this.y = params.y;
     this.angle = params.angle; // angle in degrees.
 
-    if(carNumber > maxCarsNumber) carNumber = 1;
+    this.$host = $('<div class="player"/>').attr('id', 'car'+ params.id);
+    this.$host.addClass('car'+ this.carNumber);
+    this.racerClassName = 'racer' + this.carNumber;
+
 };
 
 Player.prototype.update = function () {
