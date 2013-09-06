@@ -60,9 +60,11 @@ ViewApp.prototype._onAddPlayer = function (data) {
 
 ViewApp.prototype._onKillPlayer = function (data) {
     var player = this.players[data.id];
-    if (player) player.remove();
-    delete this.players[data.id];
-    this.removeRacer(player);
+    if (player) {
+        player.remove();
+        this.removeRacer(player);
+        delete this.players[data.id];
+    }
 };
 
 ViewApp.prototype._onGameUpdate = function (data) {
@@ -76,7 +78,7 @@ ViewApp.prototype._onGameUpdate = function (data) {
 ViewApp.prototype.addRacer = function (player) {
     var $racer = $('<div class="racer"></div>').appendTo(this.$racers);
 
-    $racer.wheel = $('<span class="steering-wheel"/>').appendTo($racer);
+    $racer.wheel = $('<span class="wheel"/>').appendTo($racer);
     $racer.name = $('<span class="name"/>').text('Player '+ player.id).appendTo($racer);
 
     this.racersList[player.id] = $racer;
