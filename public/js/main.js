@@ -24,7 +24,7 @@ ViewApp.prototype.start = function () {
 
     this.car = new Car();
     this.car.x = 100;
-    this.car.y = 200;
+    this.car.y = 100;
 
     this.car.append(this.$playfield);
 };
@@ -50,7 +50,6 @@ ViewApp.prototype._connect = function () {
     });
 
     socket.on('gameUpdate', function (data) {
-        console.log('!!!!!!!!!!!!');
         this.car.x = data.x;
         this.car.y = data.y;
         this.car.angle = data.angle;

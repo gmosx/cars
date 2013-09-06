@@ -44,6 +44,7 @@ Client.prototype.onBrake = function (e) {
 Client.prototype.onRotate = function (e, data) {
     this.car.angle += data;
     this.car.update();
+    socket.emit('rotate', data);
 };
 
 $(function () {
