@@ -12,13 +12,13 @@ ControlApp.prototype.start = function () {
         socket.emit('ready', 'player');
     });
 
-//    this.controller = new Controller();
-//    $(this.controller).on('accelerate', this.onAccelerate.bind(this));
+    this.controller = new Controller();
+    $(this.controller).on('accelerate', this.onAccelerate.bind(this));
 
-    this.desktopController = new DesktopController();
-    $(this.desktopController).
-            on('accelerate', this.onAccelerate.bind(this)).
-            on('rotate', this.onRotate.bind(this));
+//    this.desktopController = new DesktopController();
+//    $(this.desktopController).
+//            on('accelerate', this.onAccelerate.bind(this)).
+//            on('rotate', this.onRotate.bind(this));
 
     this.$playfield = $('#track');
 
@@ -30,6 +30,7 @@ ControlApp.prototype.start = function () {
 };
 
 ControlApp.prototype.onAccelerate = function (e,data) {
+    $('.value').text(data);
     this.player.move(data);
     this.player.update();
     socket.emit('accelerate', data);

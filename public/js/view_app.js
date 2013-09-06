@@ -13,7 +13,7 @@ var ViewApp = function (params) {
 
 ViewApp.prototype.start = function () {
     new QRCode(document.getElementById("qrCode"), {
-        text: window.location.host + '/player.html',
+        text: window.location.host + '/control_app.html',
         width: 128,
         height: 128,
         colorDark: "#000000",

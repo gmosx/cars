@@ -10,7 +10,8 @@
   "dependencies": {
     "box2d": "~1.0.0",
     "express": "~3.3.8",
-    "socket.io": "~0.9.16"
+    "socket.io": "~0.9.16",
+    "cluster": "~0.7.7"
   },
   "devDependencies": {
     "nodemon": "~0.7.10"

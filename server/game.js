@@ -1,5 +1,6 @@
 var util = require('util'),
-    EventEmitter = require('events').EventEmitter;
+    EventEmitter = require('events').EventEmitter,
+    cluster = require('cluster');
 
 var WAITING = 0,
     STARTED = 1;
@@ -27,7 +28,7 @@ Game.prototype.killPlayer = function (player) {
 };
 
 Game.prototype._onTick = function () {
-    console.log('------ tick');
+//    console.log('------ tick');
 
     this.emit('update', {
         players: this.players.map(function (p) { return p.toJSON(); })
