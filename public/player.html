@@ -2,16 +2,30 @@
 <html>
 <head>
     <title></title>
-    <script src="libs/jquery.min.js"></script>
-
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="js/mobile_controller.js"></script>
-    <script src="js/client.js"></script>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div id="accel">
-  Acceleration: <span class="value"></span>
-</div>
+    <div id="accel">
+      Acceleration: <span class="value"></span>
+    </div>
 
+    <script>
+        // Mock commonjs modules ;-)
+        var exports = {},
+            require = function (path) {
+                return window;
+            };
+        var APP; // ;-)
+    </script>
+
+    <!-- Libraries -->
+    <script src="libs/jquery.min.js"></script>
+    <script src="js/mobile_controller.js"></script>
+    <script src="js/desktop_controller.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <!-- Our codes -->
+    <script src="js/car.js"></script>
+    <script src="js/client.js"></script>
 </body>
 </html>
