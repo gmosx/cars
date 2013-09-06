@@ -43,7 +43,7 @@ ViewApp.prototype._connect = function () {
 };
 
 ViewApp.prototype._onConnect = function () {
-    this.socket.emit('ready','observer');
+    this.socket.emit('ready', 'observer');
 };
 
 ViewApp.prototype._onAddPlayer = function (data) {
@@ -63,6 +63,7 @@ ViewApp.prototype._onKillPlayer = function (data) {
 };
 
 ViewApp.prototype._onGameUpdate = function (data) {
+    console.log(data.players[0].angle)
     if (data.players !== undefined) {
         data.players.forEach(function (p) {
             var player = this.players[p.id];
@@ -81,7 +82,7 @@ ViewApp.prototype.addRacer = function (player) {
 
     $racer.addClass(player.racerClassName);
     $racer.wheel = $('<span class="wheel"/>').appendTo($racer);
-    $racer.name = $('<span class="name"/>').text('Player '+ player.id).appendTo($racer);
+    $racer.name = $('<span class="name"/>').text('Player ' + player.id).appendTo($racer);
 
     this.racersList[player.id] = $racer;
 };

@@ -17,8 +17,8 @@ Server.prototype = {
         player.on('dispose', this.killPlayer.bind(this, player));
         player.on('action', this.onPlayerAction.bind(this, player));
         player.y = 80 + (this.game.players.indexOf(player) * 25);
-        this.sendToObservers('addPlayer', player.toJSON());
         this.game.addPlayer(player);
+        this.sendToObservers('addPlayer', player.toJSON());
         console.log('new player added! Number of players:', this.game.players.length);
     },
 
@@ -42,6 +42,7 @@ Server.prototype = {
     },
 
     sendToObservers: function (event, data) {
+        console.log('asd', event, data)
         this.observers.forEach(function (o) {
             o.send(event, data);
         })
