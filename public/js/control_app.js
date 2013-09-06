@@ -24,16 +24,16 @@ ControlApp.prototype.start = function () {
 
     this.$playfield = $(document.body); // TODO: temp!
 
-    this.car = new Car();
-    this.car.x = 100;
-    this.car.y = 200;
+    this.player = new Player({});
+    this.player.x = 100;
+    this.player.y = 200;
 
-    this.car.append(this.$playfield);
+    this.player.append(this.$playfield);
 };
 
 ControlApp.prototype.onAccelerate = function (e,data) {
-    this.car.move(data);
-    this.car.update();
+    this.player.move(data);
+    this.player.update();
     socket.emit('accelerate', data);
 };
 
@@ -42,8 +42,8 @@ ControlApp.prototype.onBrake = function (e) {
 };
 
 ControlApp.prototype.onRotate = function (e, data) {
-    this.car.angle += data;
-    this.car.update();
+    this.player.angle += data;
+    this.player.update();
     socket.emit('rotate', data);
 };
 

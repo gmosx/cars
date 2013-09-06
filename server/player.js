@@ -7,7 +7,7 @@ var Player = function (socket) {
     this.socket = socket;
     this.id = id++;
 
-    this.x = 100;
+    this.x = 390;
     this.y = 100;
     this.angle = 0; // angle in degrees.
 
@@ -36,6 +36,15 @@ Player.prototype.onBrake = function (data) {
 Player.prototype.onRotate = function (data) {
     this.emit('rotate', data);
     this.emit('action', {type: 'rotate', value: data});
+};
+
+Player.prototype.toJSON = function () {
+    return {
+        id: this.id,
+        x: this.x,
+        y: this.y,
+        angle: this.angle
+    };
 };
 
 exports.Player = Player;

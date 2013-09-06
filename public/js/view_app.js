@@ -1,10 +1,12 @@
-var io = require('socket.io').io;
+var io = require('socket.io').io,
+    Player = require('./player').Player;
 
 /**
  * @param params
  * @constructor
  */
 var ViewApp = function (params) {
+    this.players = {};
 };
 
 ViewApp.prototype.start = function () {
@@ -21,12 +23,6 @@ ViewApp.prototype.start = function () {
 
     this._bindEvents();
     this._connect();
-
-    this.car = new Car();
-    this.car.x = 100;
-    this.car.y = 100;
-
-    this.car.append(this.$playfield);
 };
 
 ViewApp.prototype._bindEvents = function () {
@@ -42,7 +38,12 @@ ViewApp.prototype._connect = function () {
 
     socket.on('addPlayer', function (data) {
         console.info('addPlayer', arguments);
-    });
+
+
+        var player = new Player(data);
+        player.append(this.$playfield);
+        this.players[player.id] = player;
+    }.bind(this));
 
     socket.on('killPlayer', function (data) {
         console.info('killPlayer', arguments);
@@ -54,10 +55,11 @@ ViewApp.prototype._connect = function () {
 
     socket.on('gameUpdate', function (data) {
         console.log('gameUpdate', arguments);
-        this.car.x = data.x;
-        this.car.y = data.y;
-        this.car.angle = data.angle;
-        this.car.update();
+        var player = this.players[data.id];
+        player.x = data.x;
+        player.y = data.y;
+        player.angle = data.angle;
+        player.update();
     }.bind(this));
 };
 

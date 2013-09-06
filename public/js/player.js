@@ -2,14 +2,15 @@
  * @param params
  * @constructor
  */
-var Car = function (params) {
-    this.$host = $('<div class="car"></div>');
-    this.x = undefined;
-    this.y = undefined;
-    this.angle = 0; // angle in degrees.
+var Player = function (params) {
+    this.$host = $('<div id="car"' + params.id + '" class="car"></div>');
+    this.id = params.id;
+    this.x = params.x;
+    this.y = params.y;
+    this.angle = params.angle; // angle in degrees.
 };
 
-Car.prototype.update = function () {
+Player.prototype.update = function () {
     this.$host.css({
        top: this.y,
        left: this.x,
@@ -17,15 +18,15 @@ Car.prototype.update = function () {
     });
 };
 
-Car.prototype.append = function ($container) {
+Player.prototype.append = function ($container) {
     $($container).append(this.$host);
     this.update();
 };
 
-Car.prototype.remove = function () {
+Player.prototype.remove = function () {
 };
 
-//Object.defineProperties(Car.prototype, {
+//Object.defineProperties(Player.prototype, {
 //    'delta': {
 //        get: function () {
 //            return (this.angle / 180.0) * Math.PI;
@@ -33,11 +34,11 @@ Car.prototype.remove = function () {
 //    }
 //});
 
-Car.prototype.move = function (delta) {
+Player.prototype.move = function (delta) {
     var radians = (this.angle / 180.0) * Math.PI;
 
     this.y += delta * Math.sin(radians);
     this.x += delta * Math.cos(radians);
 };
 
-exports.Car = Car;
+exports.Player = Player;

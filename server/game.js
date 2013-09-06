@@ -17,13 +17,13 @@ Game.prototype._onAccelerate = function (player, delta) {
     player.y += delta * Math.sin(radians);
     player.x += delta * Math.cos(radians);
 
-    this.emit('update', {x: player.x, y: player.y, angle: player.angle});
+    this.emit('update', player.toJSON());
 };
 
 Game.prototype._onRotate = function (player, delta) {
     player.angle += delta;
 
-    this.emit('update', {x: player.x, y: player.y, angle: player.angle});
+    this.emit('update', player.toJSON());
 };
 
 exports.Game = Game;
