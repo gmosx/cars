@@ -24,7 +24,7 @@ ViewApp.prototype.start = function () {
 
     this.car = new Car();
     this.car.x = 100;
-    this.car.y = 200;
+    this.car.y = 100;
 
     this.car.append(this.$playfield);
 };
