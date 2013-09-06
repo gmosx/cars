@@ -1,10 +1,7 @@
-var io = require('socket.io').io;
-
 /**
- * @param params
  * @constructor
  */
-var Client = function (params) {
+var Client = function () {
 };
 
 Client.prototype.start = function () {
@@ -15,4 +12,5 @@ Client.prototype.start = function () {
     });
 };
 
-exports.Client = Client;
+// run client
+new Client().start();
