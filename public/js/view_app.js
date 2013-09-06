@@ -17,7 +17,7 @@ ViewApp.prototype.start = function () {
 //        correctLevel : QRCode.CorrectLevel.H
     });
 
-    this.$playfield = $(document.body); // TODO: temp!
+    this.$playfield = $('#track'); // TODO: temp!
 
     this._bindEvents();
     this._connect();
