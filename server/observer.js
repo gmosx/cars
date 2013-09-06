@@ -12,4 +12,8 @@ Observer.prototype.onDisconnect = function () {
     this.emit('dispose');
 };
 
+Observer.prototype.send = function (event, data) {
+    this.socket.emit(event, data)
+};
+
 exports.Observer = Observer;

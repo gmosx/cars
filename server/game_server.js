@@ -34,7 +34,12 @@ Server.prototype = {
         console.log('Observer killed. Number of observers:', this.observers.length);
     },
 
-}
+    sendToObservers: function (event, data) {
+       this.observers.forEach(function (o) {
+           o.send(event, data);
+       })
+    }
+};
 
 exports.createServer = function () {
     return new Server();

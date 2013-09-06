@@ -6,7 +6,7 @@ var Client = function () {
 };
 
 Client.prototype.start = function () {
-    var socket = io.connect(window.location.hosts);
+    this.socket = socket = io.connect(window.location.hosts);
 
     socket.on('connect', function (data) {
         console.log('connected to server:' + data);
@@ -20,6 +20,7 @@ Client.prototype.start = function () {
 
 Client.prototype.onAccelerate = function (e,data) {
     $('#accel .value').text(data);
+    socket.emit('accelerate', data);
 }
 
 

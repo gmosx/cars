@@ -1,5 +1,8 @@
 var Controller = function () {
-    setInterval(function () {
-        $(this).trigger('accelerate', Math.round(100 * Math.random()))
-    }.bind(this), 1000)
+window.addEventListener('deviceorientation', this.onOrientation.bind(this));
 }
+
+Controller.prototype.onOrientation = function (e) {
+    console.log(e);
+}
+
