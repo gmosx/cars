@@ -5,7 +5,6 @@ b2Settings.b2_maxPolyVertices = 128;
 function parseVertixes(path) {
     var toPair = function(v) {
             var p = v.split(' ');
-            //return p.map(parseFloat);
             return {
                 x: parseFloat(p[0]),
                 y: parseFloat(p[1])
@@ -14,7 +13,7 @@ function parseVertixes(path) {
         toVertex = function(pair) {
             return new b2Vec2(pair.x, pair.y);
         };
-    return path.split(', ').map(toPair).map(toVertex);
+    return path.split(', ').map(toPair)//.map(toVertex);
 }
 
 var b2MapDefInner = new b2PolyDef(),
@@ -32,32 +31,66 @@ var b2MapDefInner = new b2PolyDef(),
 
 b2MapDefInner.vertexCount = innerVertexes.length;
 b2MapDefInner.vertices = innerVertexes;
-b2MapDefInner.restitution = -1.0;
-b2MapDefInner.friction = .3;
-b2MapDefInner.groupIndex = 1;
 
 b2MapDefOuter.vertexCount = outerVertexes.length;
 b2MapDefOuter.vertices = outerVertexes;
-b2MapDefOuter.restitution = -1.0;
-b2MapDefOuter.friction = .3;
-b2MapDefInner.groupIndex = 1;
+console.log(outerVertexes)
+
+function line(x1, y1, x2, y2) {
+    var w = 1,
+        pd = new b2PolyDef();
+    if ( x1 > x2 ) {
+        x1 += x2;
+        x2 = x1 - x2;
+        x1 = x1 - x2;
+
+        y1 += y2;
+        y2 = y1 - y2;
+        y1 = y1 - y2;
+    }
+
+    pd.vertices = [
+        [x1,y1],
+        [x2,y2],
+        [x2 + w, y2 + w],
+        [x1 + w, y1 + w]
+    ].map(function(p){ return new b2Vec2(p[0], p[1]); });
+    pd.vertexCount = pd.vertices.length;
+    pd.restitution = .3;
+    pd.friction = .5;
+    return pd;
+}
+
+function buildOuterShape(points) {
+    var shp = new b2BodyDef(),
+        p = points.slice(0),
+        first = p.shift(),
+        prev = first,
+        cur;
+    if (!points.length) return shp;
+    while(cur = p.shift()) {
+        shp.AddShape(line(prev.x, prev.y, cur.x, cur.y));
+        prev = cur;
+    }
+    shp.AddShape(line(first.x, first.y, prev.x, prev.y));
+    return shp;
+}
 
 function createTrack(world) {
-    var trackOuterBd = new b2BodyDef();
-    trackOuterBd.AddShape(b2MapDefOuter);
-    trackOuterBd.position.Set(50,350);
+    var trackOuterBd = buildOuterShape([
+        {x: 100, y: 200},
+        {x: 500, y: 300},
+        {x: 800, y: 200},
+        {x: 400, y: 50}
+    ]);
+    //trackOuterBd.AddShape(b2MapDefOuter);
+    //trackOuterBd.AddShape(b2MapDefInner);
+    trackOuterBd.position.Set(0, 0);
     outer = world.CreateBody(trackOuterBd);
-
-
-    var trackInnerBd = new b2BodyDef();
-    trackInnerBd.AddShape(b2MapDefInner);
-    trackInnerBd.position.Set(50,350);
-    world.CreateBody(trackInnerBd);
-    //demos.top.createPoly(world, 0, 0, innerVertexes, true);
 }
 
 demos.cars.initWorld = function(world) {
     createTrack(world);
-    createBall(world, 500, 300);
+    //createBall(world, 500, 300);
 }
 demos.InitWorlds.push(demos.cars.initWorld);
