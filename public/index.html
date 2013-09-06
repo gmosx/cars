@@ -2,8 +2,6 @@
     <head>
         <title>cArs</title>
         <link rel="stylesheet" href="style.css" />
-        <script src="libs/qrcode.min.js"></script>
-        <script src="js/main.js"></script>
     </head>
     <body>
         <img id="track" src="assets/track_boundary.svg" />
@@ -15,10 +13,11 @@
                 };
             var APP; // ;-)
         </script>
+        <script src="libs/qrcode.min.js"></script>
         <script src="/socket.io/socket.io.js"></script>
-        <script src="js/client.js"></script>
+        <script src="js/main.js"></script>
         <script>
-            var app = APP = new Client();
+            var app = APP = new ViewApp();
             app.start();
         </script>
     </body>
