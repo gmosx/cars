@@ -107,7 +107,7 @@ var innerVertexes = parseVertixes('639.500 606.830, 203.500 605.830, 193.500 617
         '851.596 495.713, 831.383 452.096, 797.340 430.820, 764.362 420.181');
 
 function line(x1, y1, x2, y2) {
-    var w = 5,
+    var w = 1,
         pd = new b2d.b2PolyDef();
     if (x1 > x2) {
         x1 += x2;
