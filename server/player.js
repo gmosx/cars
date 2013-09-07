@@ -55,6 +55,7 @@ Player.prototype.toJSON = function () {
         angle: this.body.m_rotation * 180 / Math.PI,
         v: this.body.m_linearVelocity.Length()
     };
+
 };
 
 exports.Player = Player;

@@ -16,7 +16,6 @@ Server.prototype = {
         var player = new Player(socket);
         player.on('dispose', this.killPlayer.bind(this, player));
         player.on('action', this.onPlayerAction.bind(this, player));
-        player.y = 80 + (this.game.players.indexOf(player) * 25);
         this.game.addPlayer(player);
         this.sendToObservers('addPlayer', player.toJSON());
         console.log('new player added! Number of players:', this.game.players.length);
@@ -48,7 +47,7 @@ Server.prototype = {
     },
 
     onPlayerAction: function (player, data) {
-        console.log('player action: ', player.id, data);
+//        console.log('player action: ', player.id, data);
         this.sendToObservers('playerAction', {
             id: player.id,
             action: data

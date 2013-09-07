@@ -11,7 +11,7 @@ app.use(express.static(__dirname + '/../public'));
 io.set('log level', 1)
 io.sockets.on('connection', function (socket) {
     socket.on('ready', function (type) {
-        console.log(type)
+//        console.log(type)
         if (type == 'player') {
             gameServer.addPlayer(socket)
         } else {

@@ -34,7 +34,8 @@ ControlApp.prototype.start = function () {
 };
 
 ControlApp.prototype.onAccelerate = function (e,data) {
-    $('.value').text(data);
+//    alert(data)
+//    $('.value').text(data);
     this.player.move(data);
     this.player.update();
     setSpeed(data * 3);

@@ -55,7 +55,6 @@ ViewApp.prototype._onAddPlayer = function (data) {
 
 ViewApp.prototype._onKillPlayer = function (data) {
     var player = this.players[data.id];
-    console.log(data.id);
     if (player) {
         player.remove();
         this.removeRacer(player);
@@ -71,6 +70,7 @@ ViewApp.prototype._onGameUpdate = function (data) {
                 player.x = p.x;
                 player.y = p.y;
                 player.angle = p.angle;
+                player.v = p.v;
                 player.update();
                 this.updateRacer(player);
             }
@@ -98,17 +98,16 @@ ViewApp.prototype.removeRacer = function (player) {
 
 ViewApp.prototype.updateRacer = function (player) {
     var $racer = this.racersList[player.id];
-    $racer.speed.text(player.speed);
+    $racer.speed.text(player.v.toFixed(0));
     $racer.wheel.css('transform', 'rotate('+ player.angle +'deg)');
+
 };
 
 ViewApp.prototype.onPlayerList = function (list) {
     (list || []).forEach(this._onAddPlayer, this);
-    console.info('playerList', arguments);
 };
 
 ViewApp.prototype.onPlayerAction = function () {
-    console.info('playerAction', arguments);
 };
 
 
