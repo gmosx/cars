@@ -13,7 +13,9 @@ ControlApp.prototype.start = function () {
     });
 
     this.controller = new Controller();
-    $(this.controller).on('accelerate', this.onAccelerate.bind(this));
+    $(this.controller).
+        on('accelerate', this.onAccelerate.bind(this)).
+        on('rotate', this.onRotate.bind(this));
 
     this.desktopController = new DesktopController();
     $(this.desktopController).

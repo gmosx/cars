@@ -91,7 +91,7 @@ html, body {
     #racers .racer:not(:last-child) {
       margin-bottom: 10px; }
     #racers .racer:before {
-      content: counter(list,decimal) ".";
+      content: counter(list, decimal) ".";
       display: inline-block;
       vertical-align: middle;
       font-weight: bold; }
