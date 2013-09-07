@@ -12,21 +12,6 @@ html, body {
   margin: 0px;
   background: url(../assets/track.png) no-repeat center;
   background-size: cover; }
-  #track:before, #track:after {
-    content: "";
-    width: 21px;
-    height: 21px;
-    background: rgba(0, 0, 0, 0.75);
-    position: absolute;
-    left: 495px;
-    top: 39px;
-    clip: rect(0 42px 189px 0);
-    box-shadow: 21px 21px 0 rgba(0, 0, 0, 0.75), 0 42px 0 rgba(0, 0, 0, 0.75), 21px 63px 0 rgba(0, 0, 0, 0.75), 0 84px 0 rgba(0, 0, 0, 0.75), 21px 105px 0 rgba(0, 0, 0, 0.75), 0 126px 0 rgba(0, 0, 0, 0.75), 21px 147px 0 rgba(0, 0, 0, 0.75), 0 168px 0 rgba(0, 0, 0, 0.75), 21px 189px 0 rgba(0, 0, 0, 0.75), 0 210px 0 rgba(0, 0, 0, 0.75); }
-  #track:before {
-    box-shadow: none;
-    width: 42px;
-    height: 189px;
-    background: #eee; }
 
 #qrCode {
   position: absolute;

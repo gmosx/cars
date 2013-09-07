@@ -19,39 +19,39 @@ html, body {
   background: url(../assets/track.png) no-repeat center;
   background-size: cover;
 
-  // start/finish line
-  $finishSquare: 21px;
-  $finishBgc: rgba(0, 0, 0, .75);
-  $finishHeight: 189px;
-
-  &:before,
-  &:after {
-    content: "";
-    width: $finishSquare;
-    height: $finishSquare;
-    background: $finishBgc;
-    position: absolute;
-    left: 495px;
-    top: 39px;
-    clip: rect(0 $finishSquare*2 $finishHeight 0);
-    box-shadow:
-      $finishSquare $finishSquare 0 $finishBgc,
-      0 $finishSquare*2 0 $finishBgc,
-      $finishSquare $finishSquare*3 0 $finishBgc,
-      0 $finishSquare*4 0 $finishBgc,
-      $finishSquare $finishSquare*5 0 $finishBgc,
-      0 $finishSquare*6 0 $finishBgc,
-      $finishSquare $finishSquare*7 0 $finishBgc,
-      0 $finishSquare*8 0 $finishBgc,
-      $finishSquare $finishSquare*9 0 $finishBgc,
-      0 $finishSquare*10 0 $finishBgc;
-  }
-  &:before {
-    box-shadow: none;
-    width: $finishSquare*2;
-    height: $finishHeight;
-    background: #eee;
-  }
+  //// start/finish line
+  //$finishSquare: 21px;
+  //$finishBgc: rgba(0, 0, 0, .75);
+  //$finishHeight: 189px;
+  //
+  //&:before,
+  //&:after {
+  //  content: "";
+  //  width: $finishSquare;
+  //  height: $finishSquare;
+  //  background: $finishBgc;
+  //  position: absolute;
+  //  left: 495px;
+  //  top: 39px;
+  //  clip: rect(0 $finishSquare*2 $finishHeight 0);
+  //  box-shadow:
+  //    $finishSquare $finishSquare 0 $finishBgc,
+  //    0 $finishSquare*2 0 $finishBgc,
+  //    $finishSquare $finishSquare*3 0 $finishBgc,
+  //    0 $finishSquare*4 0 $finishBgc,
+  //    $finishSquare $finishSquare*5 0 $finishBgc,
+  //    0 $finishSquare*6 0 $finishBgc,
+  //    $finishSquare $finishSquare*7 0 $finishBgc,
+  //    0 $finishSquare*8 0 $finishBgc,
+  //    $finishSquare $finishSquare*9 0 $finishBgc,
+  //    0 $finishSquare*10 0 $finishBgc;
+  //}
+  //&:before {
+  //  box-shadow: none;
+  //  width: $finishSquare*2;
+  //  height: $finishHeight;
+  //  background: #eee;
+  //}
 }
 
 #qrCode {
