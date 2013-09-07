@@ -11,8 +11,8 @@ var DesktopController = function (params) {
 
 DesktopController.prototype._bindEvents = function () {
     $(document.body).
-            on('keydown', this._onKeyDown.bind(this)).
-            on('keyup', this._onKeyUp.bind(this));
+        on('keydown', this._onKeyDown.bind(this)).
+        on('keyup', this._onKeyUp.bind(this));
 };
 
 DesktopController.prototype._onKeyDown = function (e) {
@@ -32,7 +32,7 @@ DesktopController.prototype._onKeyDown = function (e) {
             e.stopPropagation();
     }
 
-    this._onKey(e);
+    this._onKey('down');
 };
 
 DesktopController.prototype._onKeyUp = function (e) {
@@ -51,13 +51,20 @@ DesktopController.prototype._onKeyUp = function (e) {
             e.preventDefault();
             e.stopPropagation();
     }
+    this._onKey('up')
 };
 
-DesktopController.prototype._onKey = function (e) {
-    if (this.keys[38]) $(this).trigger('accelerate', 100);
-    if (this.keys[40]) $(this).trigger('accelerate', -100);
-    if (this.keys[39]) $(this).trigger('rotate', 3);
-    if (this.keys[37]) $(this).trigger('rotate', -3);
+DesktopController.prototype._onKey = function (type) {
+    if (type == 'down') {
+        if (this.keys[38]) $(this).trigger('accelerate', 100);
+        if (this.keys[39]) $(this).trigger('rotate', 30);
+        if (this.keys[37]) $(this).trigger('rotate', -30);
+    } else {
+        if (!this.keys[38]) $(this).trigger('accelerate',0);
+        if (!this.keys[39]) $(this).trigger('rotate', 0);
+        if (!this.keys[37]) $(this).trigger('rotate', 0);
+
+    }
 };
 
 exports.DesktopController = DesktopController;

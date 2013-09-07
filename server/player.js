@@ -46,6 +46,7 @@ Player.prototype.onRotate = function (data) {
 };
 
 Player.prototype.toJSON = function () {
+
     return {
         id: this.id,
         x: this.body.m_position.x,

@@ -82,6 +82,8 @@ function createCar(world, x, y) {
     bd.AddShape(cd);
     bd.position.Set(x, y);
     var body = world.CreateBody(bd);
+
+    window.bb=body;
     body.SetAngularVelocity(.5);
     return body;
 }

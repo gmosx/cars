@@ -43,12 +43,20 @@ Game.prototype._onTick = function () {
 
     this.players.forEach(function (p) {
         var v = p.body.m_linearVelocity;
-        var a = b2d.b2Vec2.Make(Math.cos(p.body.m_rotation), Math.sin(p.body.m_rotation));
-        a.Multiply(p.a);
+
+        var x1 = p.a * Math.cos(p.body.m_rotation) - 0 * Math.sin(p.body.m_rotation);
+        var y1 = p.a * Math.sin(p.body.m_rotation) + 0 * Math.cos(p.body.m_rotation);
+        var a = b2d.b2Vec2.Make(x1, y1);
         v.Add(a);
+
+        console.log(p.body.m_rotation);
+
+
+        p.body.SetAngularVelocity(p.angle / 20);
+        console.log(p.angle);
         p.body.SetLinearVelocity(v);
-        v= p.body.GetOriginPosition();
-        p.body.SetOriginPosition(v, p.angle);
+//        v = p.body.GetOriginPosition();
+//        p.body.SetOriginPosition(v, p.angle);
     })
 
     this.world.Step(1.0 / 60, 1);
@@ -62,11 +70,11 @@ Game.prototype._onTick = function () {
 };
 
 Game.prototype._onAccelerate = function (player, delta) {
-    player.a = delta / 100;
+    player.a = delta / 100 * 7;
 };
 
 Game.prototype._onRotate = function (player, delta) {
-    player.angle += delta / 100;
+    player.angle = delta;
 
 //    this.emit('update', player.toJSON());
 };
@@ -122,8 +130,8 @@ function line(x1, y1, x2, y2) {
         return new b2d.b2Vec2(p[0], p[1]);
     });
     pd.vertexCount = pd.vertices.length;
-    pd.restitution = .05;
-    pd.friction = 1;
+    pd.restitution = .5;
+    pd.friction = 0.5;
     return pd;
 }
 
@@ -158,11 +166,12 @@ function createCar(world, x, y) {
     cd.density = 1.0;
     bd.AddShape(cd);
     bd.position.Set(x, y);
-    bd.angularDamping = 0.005;
+//    bd.angularDamping = 0.005;
     bd.linearDamping = 0.01;
     bd.allowSleep = false;
     var body = world.CreateBody(bd);
     body.SetLinearVelocity(new b2d.b2Vec2(1, 0))
+    body.SetAngularVelocity(0.5)
     return body;
 }
 
