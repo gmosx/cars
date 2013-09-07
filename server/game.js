@@ -153,8 +153,8 @@ function buildOuterShape(points) {
 function createTrack(world) {
     var outer = buildOuterShape(outerVertexes),
         inner = buildOuterShape(innerVertexes);
-    outer.position.Set(0, -370);
-    inner.position.Set(0, -370);
+    outer.position.Set(-10, -370);
+    inner.position.Set(-10, -370);
     world.CreateBody(outer);
     world.CreateBody(inner);
 }
