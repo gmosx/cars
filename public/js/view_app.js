@@ -63,7 +63,6 @@ ViewApp.prototype._onKillPlayer = function (data) {
 };
 
 ViewApp.prototype._onGameUpdate = function (data) {
-    console.log(data.players[0].angle)
     if (data.players !== undefined) {
         data.players.forEach(function (p) {
             var player = this.players[p.id];
@@ -72,6 +71,7 @@ ViewApp.prototype._onGameUpdate = function (data) {
                 player.y = p.y;
                 player.angle = p.angle;
                 player.update();
+                this.updateRacer(player);
             }
         }.bind(this));
     }
@@ -82,7 +82,8 @@ ViewApp.prototype.addRacer = function (player) {
 
     $racer.addClass(player.racerClassName);
     $racer.wheel = $('<span class="wheel"/>').appendTo($racer);
-    $racer.name = $('<span class="name"/>').text('Player ' + player.id).appendTo($racer);
+    $racer.name = $('<span class="name"/>').text('Player_' + player.id).appendTo($racer);
+    $racer.speed = $('<span class="speed"/>').appendTo($racer);
 
     this.racersList[player.id] = $racer;
 };
@@ -94,7 +95,10 @@ ViewApp.prototype.removeRacer = function (player) {
     delete this.racersList[player.id];
 };
 
-ViewApp.prototype.updateRacer = function (id) {
+ViewApp.prototype.updateRacer = function (player) {
+    var $racer = this.racersList[player.id];
+    $racer.speed.text(player.speed);
+    $racer.wheel.css('transform', 'rotate('+ player.angle +'deg)');
 };
 
 ViewApp.prototype.onPlayerList = function (list) {

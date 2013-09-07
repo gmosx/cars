@@ -164,7 +164,7 @@ function createCar(world, x, y) {
     bd.AddShape(cd);
     bd.position.Set(x, y);
     var body = world.CreateBody(bd);
-    body.SetAngularVelocity(.5);
+//    body.SetAngularVelocity(.5);
 //    body.SetLinearVelocity(new b2d.b2Vec2(300, 0))
     console.log(body)
     return body;

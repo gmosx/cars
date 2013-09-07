@@ -7,6 +7,7 @@ var Player = function (params) {
     this.x = params.x;
     this.y = params.y;
     this.angle = params.angle; // angle in degrees.
+    this.speed = params.speed || 0; // km/h
 
     this.$host = $('<div class="player"/>').attr('id', 'car'+ params.id);
     this.$host.addClass('car'+ this.carNumber);

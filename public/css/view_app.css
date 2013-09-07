@@ -2,20 +2,33 @@ html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font: 16px Verdana, sans-serif; }
+  font: 16px Verdana, sans-serif;
+  height: 100%; }
 
 #track {
   position: relative;
   width: 900px;
   height: 675px;
-  margin: auto;
+  margin: 20px;
   background: url(../assets/track_boundary.svg) no-repeat center; }
+  #track:after {
+    content: "";
+    width: 21px;
+    height: 21px;
+    background: rgba(0, 0, 0, 0.75);
+    position: absolute;
+    left: 490px;
+    top: 39px;
+    clip: rect(0 42px 189px 0);
+    box-shadow: 21px 21px 0 rgba(0, 0, 0, 0.75), 0 42px 0 rgba(0, 0, 0, 0.75), 21px 63px 0 rgba(0, 0, 0, 0.75), 0 84px 0 rgba(0, 0, 0, 0.75), 21px 105px 0 rgba(0, 0, 0, 0.75), 0 126px 0 rgba(0, 0, 0, 0.75), 21px 147px 0 rgba(0, 0, 0, 0.75), 0 168px 0 rgba(0, 0, 0, 0.75), 21px 189px 0 rgba(0, 0, 0, 0.75), 0 210px 0 rgba(0, 0, 0, 0.75); }
 
 #qrCode {
   position: absolute;
   top: 0;
-  left: 0;
-  margin: 20px; }
+  right: 65px;
+  margin: 20px;
+  border: 3px dotted black;
+  padding: 10px; }
 
 .player {
   position: absolute;
@@ -58,31 +71,54 @@ html, body {
 
 #racers {
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 10px;
+  top: 180px;
   margin: 15px;
   border: 1px solid gray;
   border-radius: 10px;
   padding: 10px;
-  width: 200px;
-  min-height: 100px;
-  background: white;
-  white-space: nowrap; }
-  #racers .racer > * {
-    display: inline-block;
-    vertical-align: middle; }
-  #racers .racer .wheel {
-    background: url("../assets/steering_wheel.png") no-repeat;
-    background-size: cover;
-    width: 20px;
-    height: 20px;
-    margin-right: 10px; }
+  width: 260px;
+  background: rgba(255, 255, 255, 0.75); }
+  #racers .racer {
+    counter-increment: list; }
+    #racers .racer:not(:last-child) {
+      margin-bottom: 10px; }
+    #racers .racer:before {
+      content: counter(list,decimal) ".";
+      display: inline-block;
+      vertical-align: middle;
+      font-weight: bold; }
+    #racers .racer > * {
+      display: inline-block;
+      vertical-align: middle; }
+    #racers .racer .wheel {
+      background: url("../assets/steering_wheel.png") no-repeat;
+      background-size: cover;
+      width: 20px;
+      height: 20px;
+      margin-right: 10px; }
+    #racers .racer .name, #racers .racer .speed {
+      width: 100px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap; }
+    #racers .racer .speed {
+      text-align: right;
+      margin-left: 10px;
+      color: black;
+      font-weight: bold; }
+      #racers .racer .speed:before {
+        content: '(';
+        font-weight: normal; }
+      #racers .racer .speed:after {
+        content: ' km/h)';
+        font-weight: normal; }
   #racers:empty {
     border-color: red; }
     #racers:empty:after {
-      content: 'No racers! Be first! ;)';
+      content: 'No racers! Scan the code and be first! ;)';
       display: block;
       height: 100%;
       text-align: center;
-      line-height: 100px;
-      color: red; }
+      color: red;
+      font-weight: bold; }
