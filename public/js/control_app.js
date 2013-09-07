@@ -13,7 +13,9 @@ ControlApp.prototype.start = function () {
     });
 
     this.controller = new Controller();
-    $(this.controller).on('accelerate', this.onAccelerate.bind(this));
+    $(this.controller).
+        on('accelerate', this.onAccelerate.bind(this)).
+        on('rotate', this.onRotate.bind(this));
 
     this.desktopController = new DesktopController();
     $(this.desktopController).
@@ -22,11 +24,12 @@ ControlApp.prototype.start = function () {
             on('break', this.onBrake.bind(this));
 
     this.$playfield = $('#track');
+    this.$gas = $('#pedal_gas').on('click', this.onGasPress.bind(this));
+    this.$brake = $('#pedal_brake').on('click', this.onBrakePress.bind(this));
 
     this.player = new Player({});
     this.player.x = 100;
     this.player.y = 200;
-
     this.player.append(this.$playfield);
 };
 
@@ -34,6 +37,7 @@ ControlApp.prototype.onAccelerate = function (e,data) {
     $('.value').text(data);
     this.player.move(data);
     this.player.update();
+    setSpeed(data.speed);
     socket.emit('accelerate', data);
 };
 
@@ -45,6 +49,16 @@ ControlApp.prototype.onRotate = function (e, data) {
     this.player.angle += data;
     this.player.update();
     socket.emit('rotate', data);
+};
+
+var speed = 0;
+ControlApp.prototype.onGasPress = function (e) {
+    console.info('Give me fucking gas!');
+    setSpeed(speed++);
+};
+
+ControlApp.prototype.onBrakePress = function (e) {
+    console.info('Keep calm and slow down!');
 };
 
 $(function () {

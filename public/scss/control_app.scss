@@ -1,11 +1,46 @@
 html, body {
   margin: 0;
   padding: 0;
-  font: 16px Verdana, sans-serif; }
+  font: 16px Verdana, sans-serif;
+  background: white;
+}
 
-.car {
+* {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#speed_chart {
   position: absolute;
-  width: 32px;
-  height: 19px;
-  background: url(../assets/car.png) no-repeat;
+  left: 50%;
+  top: 50%;
+  margin: -125px;
+
+  // hide min and max numbers
+  svg text {
+    &[text-anchor=start],
+    &[text-anchor=end] {
+      display: none;
+    }
+  }
+}
+
+#pedal_gas,
+#pedal_brake {
+  position: absolute;
+  top: 50%;
+  text-align: center;
+  font-weight: bold;
+  margin: 0 50px;
+  -webkit-transform: translateY(-50%);
+  &:after {
+    content: url('../assets/pedal_gas.png');
+  }
+}
+
+#pedal_gas {
+  left: 0;
+}
+#pedal_brake {
+  right: 0;
 }
