@@ -10967,3 +10967,4 @@ exports.b2World = b2World;
 exports.b2BodyDef = b2BodyDef;
 exports.b2PolyDef = b2PolyDef;
 exports.b2BoxDef = b2BoxDef;
+exports.b2Mat22 = b2Mat22;

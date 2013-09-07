@@ -54,8 +54,8 @@ DesktopController.prototype._onKeyUp = function (e) {
 };
 
 DesktopController.prototype._onKey = function (e) {
-    if (this.keys[38]) $(this).trigger('accelerate', 3);
-    if (this.keys[40]) $(this).trigger('accelerate', -3);
+    if (this.keys[38]) $(this).trigger('accelerate', 100);
+    if (this.keys[40]) $(this).trigger('accelerate', -100);
     if (this.keys[39]) $(this).trigger('rotate', 3);
     if (this.keys[37]) $(this).trigger('rotate', -3);
 };
