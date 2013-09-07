@@ -4,12 +4,15 @@
     <title></title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/view_app.css" />
-
+    <link rel="stylesheet" href="css/control_app.css" />
 </head>
 <body>
-    <div id="accel">
-      Acceleration: <span class="value"></span>
-    </div>
+    <!--<div id="accel">-->
+      <!--Acceleration: <span class="value"></span>-->
+    <!--</div>-->
+    <div id="speed_chart"></div>
+    <div id="pedal_gas"><div>Gas</div></div>
+    <div id="pedal_brake"><div>Brake</div></div>
 
     <script>
         // Mock commonjs modules ;-)
@@ -29,5 +32,36 @@
     <!-- Our codes -->
     <script src="js/player.js"></script>
     <script src="js/control_app.js"></script>
+
+    <!-- Speed chart -->
+    <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+    <script type='text/javascript'>
+        google.load('visualization', '1', {packages:['gauge']});
+        google.setOnLoadCallback(drawSpeedChart);
+        function drawSpeedChart() {
+            var options = {
+                min: 0, max: 300,
+                width: 250, height: 250,
+                redFrom: 0, redTo: 60,
+                yellowFrom:60, yellowTo: 150,
+                greenFrom:150, greenTo: 300,
+                minorTicks: 5,
+                'animation.easing': 'inAndOut'
+            };
+
+            var speedChart = new google.visualization.Gauge(document.getElementById('speed_chart'));
+
+            function setSpeed(speed) {
+                var data = google.visualization.arrayToDataTable([
+                    ['Label', 'Value'],
+                    ['Speed', speed || 0]
+                ]);
+                speedChart.draw(data, options);
+            }
+
+            window.setSpeed = setSpeed;
+            setSpeed(0);
+        }
+    </script>
 </body>
 </html>

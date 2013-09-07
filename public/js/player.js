@@ -32,14 +32,6 @@ Player.prototype.remove = function () {
     this.$host.remove();
 };
 
-//Object.defineProperties(Player.prototype, {
-//    'delta': {
-//        get: function () {
-//            return (this.angle / 180.0) * Math.PI;
-//        }
-//    }
-//});
-
 Player.prototype.move = function (delta) {
     var radians = (this.angle / 180.0) * Math.PI;
 
