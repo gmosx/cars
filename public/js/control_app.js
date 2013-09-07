@@ -37,7 +37,7 @@ ControlApp.prototype.onAccelerate = function (e,data) {
     $('.value').text(data);
     this.player.move(data);
     this.player.update();
-    setSpeed(data.speed);
+    setSpeed(data * 3);
     socket.emit('accelerate', data);
 };
 

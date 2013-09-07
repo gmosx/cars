@@ -52,7 +52,8 @@ Player.prototype.toJSON = function () {
         x: this.body.m_position.x,
         y: this.body.m_position.y,
         carNumber: this.carNumber,
-        angle: this.body.m_rotation * 180 / Math.PI
+        angle: this.body.m_rotation * 180 / Math.PI,
+        v: this.body.m_linearVelocity.Length()
     };
 };
 
