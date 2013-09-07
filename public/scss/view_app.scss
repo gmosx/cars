@@ -20,29 +20,37 @@ html, body {
   background: url(../assets/track_boundary.svg) no-repeat center;
 
   // start/finish line
-  &:after {
-    $bgc: rgba(0, 0, 0, .75);
-    $size: 21px;
+  $finishSquare: 21px;
+  $finishBgc: rgba(0, 0, 0, .75);
+  $finishHeight: 189px;
 
+  &:before,
+  &:after {
     content: "";
-    width: $size;
-    height: $size;
-    background: $bgc;
+    width: $finishSquare;
+    height: $finishSquare;
+    background: $finishBgc;
     position: absolute;
-    left: 490px;
+    left: 495px;
     top: 39px;
-    clip: rect(0 $size*2 189px 0);
+    clip: rect(0 $finishSquare*2 $finishHeight 0);
     box-shadow:
-      $size $size 0 $bgc,
-      0 $size*2 0 $bgc,
-      $size $size*3 0 $bgc,
-      0 $size*4 0 $bgc,
-      $size $size*5 0 $bgc,
-      0 $size*6 0 $bgc,
-      $size $size*7 0 $bgc,
-      0 $size*8 0 $bgc,
-      $size $size*9 0 $bgc,
-      0 $size*10 0 $bgc;
+      $finishSquare $finishSquare 0 $finishBgc,
+      0 $finishSquare*2 0 $finishBgc,
+      $finishSquare $finishSquare*3 0 $finishBgc,
+      0 $finishSquare*4 0 $finishBgc,
+      $finishSquare $finishSquare*5 0 $finishBgc,
+      0 $finishSquare*6 0 $finishBgc,
+      $finishSquare $finishSquare*7 0 $finishBgc,
+      0 $finishSquare*8 0 $finishBgc,
+      $finishSquare $finishSquare*9 0 $finishBgc,
+      0 $finishSquare*10 0 $finishBgc;
+  }
+  &:before {
+    box-shadow: none;
+    width: $finishSquare*2;
+    height: $finishHeight;
+    background: silver;
   }
 }
 
@@ -65,7 +73,7 @@ html, body {
   background-repeat: no-repeat;
 }
 
-$carColors: gray, royalblue, red, green, gold;
+$carColors: gray, royalblue, red, green, goldenrod;
 $racer: 1;
 $racers: 5;
 @while $racer <= $racers {
@@ -116,7 +124,7 @@ $racers: 5;
       background-size: cover;
       width: 20px;
       height: 20px;
-      margin-right: 10px;
+      margin: 0 5px;
     }
 
     .name, .speed {
@@ -136,7 +144,6 @@ $racers: 5;
         content: ' km/h)';
         font-weight: normal;
       }
-      margin-left: 10px;
       color: black;
       font-weight: bold;
     }
@@ -147,7 +154,7 @@ $racers: 5;
     border-color: $color;
 
     &:after {
-      content: 'No racers! Scan the code and be first! ;)';
+      content: 'No racers! Hurry up, scan the code above! ;)';
       display: block;
       height: 100%;
       text-align: center;

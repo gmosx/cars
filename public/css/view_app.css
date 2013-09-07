@@ -11,16 +11,21 @@ html, body {
   height: 675px;
   margin: 20px;
   background: url(../assets/track_boundary.svg) no-repeat center; }
-  #track:after {
+  #track:before, #track:after {
     content: "";
     width: 21px;
     height: 21px;
     background: rgba(0, 0, 0, 0.75);
     position: absolute;
-    left: 490px;
+    left: 495px;
     top: 39px;
     clip: rect(0 42px 189px 0);
     box-shadow: 21px 21px 0 rgba(0, 0, 0, 0.75), 0 42px 0 rgba(0, 0, 0, 0.75), 21px 63px 0 rgba(0, 0, 0, 0.75), 0 84px 0 rgba(0, 0, 0, 0.75), 21px 105px 0 rgba(0, 0, 0, 0.75), 0 126px 0 rgba(0, 0, 0, 0.75), 21px 147px 0 rgba(0, 0, 0, 0.75), 0 168px 0 rgba(0, 0, 0, 0.75), 21px 189px 0 rgba(0, 0, 0, 0.75), 0 210px 0 rgba(0, 0, 0, 0.75); }
+  #track:before {
+    box-shadow: none;
+    width: 42px;
+    height: 189px;
+    background: silver; }
 
 #qrCode {
   position: absolute;
@@ -67,7 +72,7 @@ html, body {
   background-image: url("../assets/car5.png"); }
 
 .racer5 {
-  color: gold; }
+  color: goldenrod; }
 
 #racers {
   position: absolute;
@@ -96,7 +101,7 @@ html, body {
       background-size: cover;
       width: 20px;
       height: 20px;
-      margin-right: 10px; }
+      margin: 0 5px; }
     #racers .racer .name, #racers .racer .speed {
       width: 100px;
       text-overflow: ellipsis;
@@ -104,7 +109,6 @@ html, body {
       white-space: nowrap; }
     #racers .racer .speed {
       text-align: right;
-      margin-left: 10px;
       color: black;
       font-weight: bold; }
       #racers .racer .speed:before {
@@ -116,7 +120,7 @@ html, body {
   #racers:empty {
     border-color: red; }
     #racers:empty:after {
-      content: 'No racers! Scan the code and be first! ;)';
+      content: 'No racers! Hurry up, scan the code above! ;)';
       display: block;
       height: 100%;
       text-align: center;
