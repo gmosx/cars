@@ -55,7 +55,9 @@ ViewApp.prototype._onAddPlayer = function (data) {
 
 ViewApp.prototype._onKillPlayer = function (data) {
     var player = this.players[data.id];
+    console.log(data.id);
     if (player) {
+        console.log('---1');
         player.remove();
         this.removeRacer(player);
         delete this.players[data.id];
